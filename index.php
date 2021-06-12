@@ -1,25 +1,44 @@
-<?php   
-     $checkM = false;
-     $checkP = false;
+<?php 
+error_reporting(-1);
+ini_set('display_errors', 1);
 
-     if(isset($_POST["mail"])){
-         if($_POST["mail"] == "1234@gmail.com"){
-             $checkM = true;
-         }else{
-             $checkP = false;
-         }
-     }
-     if(isset($_POST["pass"])){
-         if($_POST["pass"] == "12345"){
-             $checkP = true;
-         }else{
-             $checkM = false;
-         }
-     }
-     if($checkM==true && $checkP==true){
-        echo "Sesion iniciada";
-     }else{
-        echo "Datos incorrectos";
-     }
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
+use Slim\Factory\AppFactory;
+use Slim\Routing\RouteCollectorProxy;
+use Slim\Routing\RouteContext;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = AppFactory::create();
+
+$app->get('/login', function (Request $request, Response $response, $args) {
+    $response->getBody()->write("Hello world!");
+    return $response;
+});
+
+$app->addErrorMiddleware(true, true, true);
+
+// Enable CORS
+$app->add(function (Request $request, RequestHandlerInterface $handler): Response {
+    // $routeContext = RouteContext::fromRequest($request);
+    // $routingResults = $routeContext->getRoutingResults();
+    // $methods = $routingResults->getAllowedMethods();
+    
+    $response = $handler->handle($request);
+    $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
+
+    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'get,post');
+    $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
+
+    // Optional: Allow Ajax CORS requests with Authorization header
+    // $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
+
+    return $response;
+});
+
+$app->run();
   
 ?>
