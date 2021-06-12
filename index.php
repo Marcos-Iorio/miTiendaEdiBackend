@@ -13,8 +13,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $app = AppFactory::create();
 
-$app->get('/login', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
+$app->get('/api/login', function (Request $request, Response $response, $args) {
+    $response->getBody()->write("Hola usuario");
     return $response;
 });
 
