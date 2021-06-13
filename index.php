@@ -10,12 +10,13 @@ use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/controllers/UsuarioController.php';
+require __DIR__ . '/entidades/Usuario.php';
 
 $app = AppFactory::create();
 
-$app->get('/api/login', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hola usuario");
-    return $response;
+$app->group('/login', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \UsuarioController::class . ':RetornarUsuarios');
 });
 
 $app->addErrorMiddleware(true, true, true);
