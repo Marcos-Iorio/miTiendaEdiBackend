@@ -12,12 +12,10 @@ use Slim\Routing\RouteContext;
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/controllers/UsuarioController.php';
 require __DIR__ . '/entidades/Usuario.php';
+require __DIR__ . '/Data/AccesoADatos.php';
 
 $app = AppFactory::create();
 
-$app->group('/login', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \UsuarioController::class . ':RetornarUsuarios');
-});
 
 $app->addErrorMiddleware(true, true, true);
 
@@ -37,6 +35,16 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     // Optional: Allow Ajax CORS requests with Authorization header
     // $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
 
+    return $response;
+});
+
+$app->group('/login', function (RouteCollectorProxy $group) {
+    $group->get('/{nameL}/{passL}', \UsuarioController::class . ':RetornarUsuario');
+});
+
+$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+    $name = $args['name'];
+    $response->getBody()->write("Hello, $name");
     return $response;
 });
 
