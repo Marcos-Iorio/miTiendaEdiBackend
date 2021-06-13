@@ -12,7 +12,8 @@ class UsuarioController{
         foreach($resultado as $resultados){
             echo $resultados->nombre;
             echo $resultados->pass;
-        }
+        } 
+  
          return $response;
     }
 

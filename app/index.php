@@ -40,12 +40,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->get('/{nameL}/{passL}', \UsuarioController::class . ':RetornarUsuario');
-});
-
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-    return $response;
+    
 });
 
 $app->run();
