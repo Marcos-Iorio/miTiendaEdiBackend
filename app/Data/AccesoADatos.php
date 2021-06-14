@@ -8,7 +8,7 @@ class AccesoDatos
     {
         try {
             /* host=localhost:3306 */
-            $this->objetoPDO = new PDO('mysql:https://edi-iorio-back.herokuapp.com/;dbname=tiendaedi;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->objetoPDO = new PDO('mysql:https://edi-iorio-back.herokuapp.com/;dbname=tiendaedi;charset=utf8:3306', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $this->objetoPDO->exec("SET CHARACTER SET utf8");
         } catch (PDOException $e) {
             print "Error: " . $e->getMessage();
