@@ -10,8 +10,13 @@ class UsuarioController{
         $resultado = $consulta-> fetchAll(PDO::FETCH_OBJ);
 
         foreach($resultado as $resultados){
-            echo $resultados->nombre;
-            echo $resultados->pass;
+            if($resultados->nombre == $args['nameL'] && $resultados->pass == $args['passL']){
+                echo $resultados->nombre;
+                echo $resultados->pass;
+            }
+            else{
+                echo "Datos incorrectos o inexistentes";
+            }
         } 
   
          return $response;
