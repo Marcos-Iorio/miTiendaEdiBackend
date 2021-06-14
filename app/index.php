@@ -11,7 +11,7 @@ use Slim\Routing\RouteContext;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/controllers/UsuarioController.php';
-require __DIR__ . '/entidades/Usuario.php';
+require __DIR__ . '/Entidades/Usuario.php';
 require __DIR__ . '/Data/AccesoADatos.php';
 
 $app = AppFactory::create();
