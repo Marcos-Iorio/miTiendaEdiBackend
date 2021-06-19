@@ -40,6 +40,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RetornarUsuario');
+    $group->POST('[/]', \UsuarioController::class . ':RegistrarUsuario');
     /* return $response->withHeader('Location', '/users/login'); */
     
 });
