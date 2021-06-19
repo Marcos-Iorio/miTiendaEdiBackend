@@ -40,9 +40,6 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RetornarUsuario');
-
-    $response = $response->withStatus(302);
-    return $response->withHeader('Location', 'inicio');
     
 });
 
