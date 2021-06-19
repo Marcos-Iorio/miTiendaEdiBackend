@@ -34,7 +34,7 @@ class UsuarioController{
         if($consulta->execute()){
             $respuesta = "Registrado con exito";
         }else{
-            $respuesta = "Fallo en registrar"
+            $respuesta = "Fallo en registrar";
         }
         
     
