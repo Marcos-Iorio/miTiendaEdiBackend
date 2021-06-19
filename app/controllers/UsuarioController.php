@@ -11,8 +11,7 @@ class UsuarioController{
         $resultado = $consulta-> fetchAll(PDO::FETCH_OBJ);
         foreach($resultado as $resultados){
             if($resultados->nombre == $datos['Nombre'] && $resultados->pass == $datos['Contraseña']){
-                /* $respuesta = "Sesion iniciada " . $resultados->nombre . $resultados->pass; */
-                $respuesta = $response->withStatus(302)->withHeader('Location', 'inicio');
+                $respuesta = "Sesion iniciada " . $resultados->nombre . $resultados->pass;
             }
             else{
                $respuesta = "Datos incorrectos o inexistentes";
