@@ -17,8 +17,8 @@ class UsuarioController{
                $respuesta = "Datos incorrectos o inexistentes";
             }
         } 
-        
-        $response->getBody()->Write(json_encode($respuesta));
+        $response->withStatus(302)->withHeader('Location', '/inicio');
+        /* $response->getBody()->Write(json_encode($respuesta)); */
         return $response;
     }
 

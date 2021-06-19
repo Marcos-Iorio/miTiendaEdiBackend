@@ -40,7 +40,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RetornarUsuario');
-
+    
 });
 
 $app->group('/registro', function (RouteCollectorProxy $group) {
