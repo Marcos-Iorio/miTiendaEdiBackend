@@ -40,8 +40,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
 
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RetornarUsuario');
-    return $res->withStatus(302)->withHeader('Location', 'inicio.html');
-    
+
 });
 
 $app->group('/registro', function (RouteCollectorProxy $group) {
@@ -49,7 +48,7 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
     
 });
 
-$app->POST('/', function ($req, $res, $args) {
+$app->POST('/inicio', function ($req, $res, $args) {
     return $res->withStatus(302)->withHeader('Location', 'inicio.html');
   });
 
