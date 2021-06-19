@@ -48,10 +48,6 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
     
 });
 
-$app->POST('/inicio', function ($req, $res, $args) {
-    return $res->withStatus(302)->withHeader('Location', 'inicio.html');
-  });
-
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
     $response->getBody()->write("Hello, $name");
