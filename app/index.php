@@ -49,7 +49,7 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
 });
 
 $app->POST('/', function ($req, $res, $args) {
-    return $res->withStatus(302)->withHeader('Location', 'inicio');
+    return $res->withStatus(302)->withHeader('Location', 'inicio.html');
   });
 
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
