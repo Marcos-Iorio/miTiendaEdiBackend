@@ -11,6 +11,7 @@ use Slim\Routing\RouteContext;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/controllers/UsuarioController.php';
+require __DIR__ . '/controllers/ProductosController.php';
 require __DIR__ . '/Entidades/Usuario.php';
 require __DIR__ . '/Data/AccesoADatos.php';
 
@@ -47,6 +48,14 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RegistrarUsuario');
     
 });
+
+$app->group('/productos', function (RouteCollectorProxy $group) {
+    $group->POST('[/]', \ProductosController::class . ':RetornarCategorias');
+    $group->POST('[/]', \ProductosController::class . ':RetornarTodos');
+    $group->POST('[/]', \ProductosController::class . ':RetornarProductoPorCategoria');
+    
+});
+
 
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
