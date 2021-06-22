@@ -10,8 +10,8 @@ class ProductosController{
         $consulta = $objAccesoDatos->prepararConsulta('SELECT categoria FROM productos');
         $consulta->execute();
 
-        /* $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ); */
-        $respuesta = "Hola";
+        $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
+        
             $response->getBody()->Write(json_encode($respuesta));
             return $response;
     
