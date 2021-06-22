@@ -11,7 +11,7 @@ class ProductosController{
         $consulta->execute();
 
         /* $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ); */
-        $respuesta = "Hola"
+        $respuesta = "Hola";
             $response->getBody()->Write(json_encode($respuesta));
             return $response;
     
