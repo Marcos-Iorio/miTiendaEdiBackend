@@ -7,15 +7,13 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
 
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT categoria FROM productos where categoria = "' . $datos['Categoria'] . '"');
+        $consulta = $objAccesoDatos->prepararConsulta('SELECT categoria FROM productos');
         $consulta->execute();
-        $resultado = $consulta-> fetchAll(PDO::FETCH_OBJ);
-        foreach($resultado as $resultados){
-            $respuesta = $resultados->categoria;
-        } 
-        
-        $response->getBody()->Write(json_encode($respuesta));
-        return $response;
+
+        $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
+            $response->getBody()->Write(json_encode($respuesta));
+            return $response;
+    
     }
 
     public function RetornarProductoPorCategoria(){
