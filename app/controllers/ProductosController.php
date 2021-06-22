@@ -7,11 +7,11 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
 
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT categoria FROM productos');
+        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
         $consulta->execute();
 
         $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
-        
+
             $response->getBody()->Write(json_encode($respuesta));
             return $response;
     
