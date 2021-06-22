@@ -51,17 +51,11 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
 
 $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \ProductosController::class . ':RetornarCategorias');
-    $group->POST('[/]', \ProductosController::class . ':RetornarTodos');
-    $group->POST('[/]', \ProductosController::class . ':RetornarProductoPorCategoria');
+    $group->get('/todos', \ProductosController::class . ':RetornarTodos');
+    $group->get('/{categoria}', \ProductosController::class . ':RetornarProductoPorCategoria');
     
 });
 
-
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-    return $response;
-});
 $app->run();
   
 ?>
