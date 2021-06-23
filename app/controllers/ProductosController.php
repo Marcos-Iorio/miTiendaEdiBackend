@@ -17,7 +17,7 @@ class ProductosController{
     
     }
 
-    public function RetornarProductoPorCategoria(){
+    public function RetornarProductoPorCategoria($request, $response, $args){
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
@@ -33,21 +33,6 @@ class ProductosController{
         return $response;
 
     }
-
-    public function RetornarTodosProd(){
-        $objAccesoDatos = AccesoDatos::obtenerInstancia();
-
-        $datos = $request->getParsedBody();
-
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
-        $consulta->execute();
-        $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
-
-        $response->getBody()->Write(json_encode($productos));
-            return $response;
-
-    }
-
 
 }
 
