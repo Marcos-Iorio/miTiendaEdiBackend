@@ -51,8 +51,8 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
 
 $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductosController::class . ':RetornarCategorias');
-    $group->get('/todos', \ProductosController::class . ':RetornarTodos');
-    $group->get('/{categoria}', \ProductosController::class . ':RetornarProductoPorCategoria');
+    $group->get('/todos', \ProductosController::class . ':RetornarTodosProd');
+    $group->get('/cargar', \ProductosController::class . ':RetornarProductoPorCategoria');
     
 });
 

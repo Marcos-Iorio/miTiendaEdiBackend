@@ -34,7 +34,7 @@ class ProductosController{
 
     }
 
-    public function RetornarTodos(){
+    public function RetornarTodosProd(){
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
