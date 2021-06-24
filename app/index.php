@@ -50,7 +50,7 @@ $app->group('/registro', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/productos', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \ProductosController::class . ':ObtenerCategoria');
+    $group->get('[/]', \ProductosController::class . ':RetornarProductoPorCategoria');
     $group->get('/todos', \ProductosController::class . ':ObtenerTodo');
     $group->get('/prodCat', \ProductosController::class . ':RetornarProductoPorCategoria');
     
