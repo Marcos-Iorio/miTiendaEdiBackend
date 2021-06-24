@@ -36,14 +36,25 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
 
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $datos['Categoria'] .'"');
-        $consulta->execute();
+        if($datos['Categoria'] == "todo"){
+            $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
+            $consulta->execute();
 
-        $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
+            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
 
             $response->getBody()->Write(json_encode($resultado));
             return $response;
+
+        }else{
+            $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $datos['Categoria'] .'"');
+            $consulta->execute();
     
+            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
+    
+                $response->getBody()->Write(json_encode($resultado));
+                return $response;
+        }
+  
     }
 
 }
