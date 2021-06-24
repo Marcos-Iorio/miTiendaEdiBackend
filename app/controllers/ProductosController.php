@@ -2,7 +2,7 @@
 
 class ProductosController{
 
-    public function RetornarCategorias($request, $response, $args){
+    public function ObtenerTodo($request, $response, $args){
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
@@ -10,9 +10,9 @@ class ProductosController{
         $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
         $consulta->execute();
 
-        $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
+        $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
 
-            $response->getBody()->Write(json_encode($respuesta));
+            $response->getBody()->Write(json_encode($resultado));
             return $response;
     
     }
@@ -22,16 +22,28 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
 
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "' . $datos['Categoria'] . '"');
+        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM categorias');
         $consulta->execute();
-        $resultado = $consulta-> fetchAll(PDO::FETCH_OBJ);
-        foreach($resultado as $resultados){
-            $respuesta = $resultados->categoria;
-        } 
-        
-        $response->getBody()->Write(json_encode($respuesta));
+        $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
+
+        $response->getBody()->Write(json_encode($resultado));
         return $response;
 
+    }
+
+    public function ObtenerCategoria($request, $response, $args){
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+
+        $datos = $request->getParsedBody();
+
+        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $datos['Categoria'] .'"');
+        $consulta->execute();
+
+        $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
+
+            $response->getBody()->Write(json_encode($resultado));
+            return $response;
+    
     }
 
 }
