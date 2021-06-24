@@ -36,7 +36,7 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
 
-        if($datos['Categoria'] == "todo"){
+        if($datos['Categoria'] == "0"){
             $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
             $consulta->execute();
 
