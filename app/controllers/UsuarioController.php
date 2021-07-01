@@ -40,9 +40,18 @@ class UsuarioController{
         
         $response->getBody()->Write(json_encode($respuesta));
         return $response; */
-        $registrarUsuario = Usuario::registrar();
-        $response->getBody()->Write(json_encode($registrarUsuario));
-        return $response;
+        $ObjetoProvenienteDelFront =  json_decode($request->getBody());
+        var_dump($ObjetoProvenienteDelFront);
+
+        //recorro los valores del objeto
+        $MiUsuario = new Usuario();
+        foreach ($ObjetoProvenienteDelFront as $atr => $valueAtr) {
+            $MiUsuario->{$atr} = $valueAtr;
+        }
+        $retorno =  $MiUsuario->\Usuario::registrar();
+        $response->getBody()->Write(json_encode($ObjetoProvenienteDelFront));
+
+    return $response;
     }
 
 }
