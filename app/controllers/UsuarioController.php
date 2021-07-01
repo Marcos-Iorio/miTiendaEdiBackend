@@ -12,7 +12,6 @@ class UsuarioController{
         foreach($resultado as $resultados){
             if($resultados->nombre == $datos['Nombre'] && $resultados->pass == $datos['Contraseña']){
                 $respuesta = "Sesion iniciada " . $resultados->nombre . $resultados->pass;
-
             }
             else{
                $respuesta = "Datos incorrectos o inexistentes";
@@ -24,7 +23,7 @@ class UsuarioController{
     }
 
     public function RegistrarUsuario($request, $response, $args){
-        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        /* $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
         $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
@@ -40,6 +39,9 @@ class UsuarioController{
         }
         
         $response->getBody()->Write(json_encode($respuesta));
+        return $response; */
+        $registrarUsuario = Usuario::registrar();
+        $response->getBody()->Write(json_encode($registrarUsuario));
         return $response;
     }
 
