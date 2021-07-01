@@ -6,7 +6,7 @@
         public $pass;
         public $mail;
 
-        public static function registrar(){
+        /* public static function registrar(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $datos = $request->getParsedBody();
@@ -24,7 +24,7 @@
             
             $response->$respuesta;
             return $response;
-        }
+        } */
     }
 
 ?>

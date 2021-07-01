@@ -23,7 +23,7 @@ class UsuarioController{
     }
 
     public function RegistrarUsuario($request, $response, $args){
-        /* $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
         $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
@@ -39,19 +39,8 @@ class UsuarioController{
         }
         
         $response->getBody()->Write(json_encode($respuesta));
-        return $response; */
-        $ObjetoProvenienteDelFront =  json_decode($request->getBody());
-        var_dump($ObjetoProvenienteDelFront);
-
-        //recorro los valores del objeto
-        $MiUsuario = new Usuario();
-        foreach ($ObjetoProvenienteDelFront as $atr => $valueAtr) {
-            $MiUsuario->{$atr} = $valueAtr;
-        }
-        $retorno =  $MiUsuario->\Usuario::registrar();
-        $response->getBody()->Write(json_encode($ObjetoProvenienteDelFront));
-
-    return $response;
+        return $response;
+        
     }
 
 }
