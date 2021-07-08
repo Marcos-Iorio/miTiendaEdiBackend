@@ -23,8 +23,9 @@ class UsuarioController{
     }
 
     public function RegistrarUsuario($request, $response, $args){
-        $datosUsuario =  json_decode($request->getParsedBody());
+        $datosUsuario =  json_decode($request->getBody());
         var_dump($datosUsuario);
+        
 
        $MiUsuario = new Usuario();
         foreach ($datosUsuario as $atr => $valueAtr) {
