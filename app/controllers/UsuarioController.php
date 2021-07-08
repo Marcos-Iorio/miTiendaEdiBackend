@@ -23,7 +23,7 @@ class UsuarioController{
     }
 
     public function RegistrarUsuario($request, $response, $args){
-        $datosUsuario =  json_decode($request->getBody());
+        $datosUsuario =  json_decode($request->getParsedBody());
         var_dump($datosUsuario);
 
        $MiUsuario = new Usuario();
