@@ -24,7 +24,7 @@
             $response->$respuesta;
             return $response; */
         }
-        static public function retornarUsuarios(){
+        static public function LoginUsuarios(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM usuarios');
