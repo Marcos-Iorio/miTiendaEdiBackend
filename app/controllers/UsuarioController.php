@@ -30,6 +30,7 @@ class UsuarioController{
 
        $MiUsuario = new Usuario();
         foreach ($datosUsuario as $atr => $valueAtr) {
+            echo $datosUsuario;
             $MiUsuario->{$atr} = $valueAtr;
         }
         $retorno =  $MiUsuario->crearUsuario();
