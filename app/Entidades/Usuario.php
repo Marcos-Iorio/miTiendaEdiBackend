@@ -7,14 +7,13 @@
         public $mail;
 
         public function crearUsuario(){
-            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            /* $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
             
-            /* $consulta->bindParam(1, $datos['Nombre']);
+            $consulta->bindParam(1, $datos['Nombre']);
             $consulta->bindParam(2, $datos['Contraseña']);
-            $consulta->bindParam(3, $datos['Mail']); */
-            $this->autor;
+            $consulta->bindParam(3, $datos['Mail']);
     
             if($consulta->execute()){
                 $respuesta = "Registrado con exito";
@@ -23,7 +22,14 @@
             }
             
             $response->$respuesta;
-            return $response;
+            return $response; */
+        }
+        static public function retornarUsuarios(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+
+            $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM usuarios');
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
         }
     }
 

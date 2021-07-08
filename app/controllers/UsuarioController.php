@@ -6,38 +6,38 @@ class UsuarioController{
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT nombre, pass FROM usuarios where nombre = "' . $datos['Nombre'] . '" and pass = "' . $datos['Contraseña'] . '"');
-        $consulta->execute();
-        $resultado = $consulta-> fetchAll(PDO::FETCH_OBJ);
-        foreach($resultado as $resultados){
-            if($resultados->nombre == $datos['Nombre'] && $resultados->pass == $datos['Contraseña']){
-                $respuesta = "Sesion iniciada " . $resultados->nombre . $resultados->pass;
-            }
-            else{
-               $respuesta = "Datos incorrectos o inexistentes";
-            }
-        } 
+
+        $usuarios = Usuario::retornarUsuarios();
         
+        foreach($usuarios as $users){
+             if ($users->nombre == $datos['Nombre'] && $users->mail == $datos['Mail'] && $users->pass == $datos['pass']){
+                $respuesta = "Sesion iniciada " . $users->nombre . $users->pass;
+            }
+        }
         $response->getBody()->Write(json_encode($respuesta));
-        return $response;
+            return $response;
+        
     }
 
     public function RegistrarUsuario($request, $response, $args){
-        $valor =  $args['param'];
-        $datosUsuario = $request->getParsedBody();
-        var_dump($datosUsuario);
+
+
+        $datos = $request->getParsedBody();
+
+        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
         
+        $consulta->bindParam(1, $datos['Nombre']);
+        $consulta->bindParam(2, $datos['Contraseña']);
+        $consulta->bindParam(3, $datos['Mail']);
 
-       $MiUsuario = new Usuario();
-        foreach ($datosUsuario as $atr => $valueAtr) {
-            echo $datosUsuario;
-            $MiUsuario->{$atr} = $valueAtr;
+        if($consulta->execute()){
+            $respuesta = "Registrado con exito";
+        }else{
+            $respuesta = "Fallo en registrar";
         }
-        $retorno =  $MiUsuario->crearUsuario();
-   
-    $response->getBody()->Write(json_encode($datosUsuario));
-
-    return $response;
+        
+        $response->$respuesta;
+        return $response;
         
     }
 
