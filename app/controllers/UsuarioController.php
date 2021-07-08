@@ -23,7 +23,8 @@ class UsuarioController{
     }
 
     public function RegistrarUsuario($request, $response, $args){
-        $datosUsuario =  json_decode($request->getBody());
+        $valor =  $args['param'];
+        $datosUsuario = $request->getParsedBody();
         var_dump($datosUsuario);
         
 
@@ -33,7 +34,7 @@ class UsuarioController{
         }
         $retorno =  $MiUsuario->crearUsuario();
    
-    $response->getBody()->Write(json_encode($retorno));
+    $response->getBody()->Write(json_encode($datosUsuario));
 
     return $response;
         
