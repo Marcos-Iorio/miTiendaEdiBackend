@@ -10,7 +10,7 @@ class UsuarioController{
         $usuarios = Usuario::retornarUsuarios();
         
         foreach($usuarios as $users){
-             if ($users->nombre == $datos['Nombre'] && $users->mail == $datos['Mail'] && $users->pass == $datos['pass']){
+             if ($users->nombre == $datos['Nombre'] && $users->pass == $datos['Contraseña']){
                 $respuesta = "Sesion iniciada " . $users->nombre . $users->pass;
             }
         }
