@@ -42,7 +42,7 @@ class ProductosController{
         /* foreach($prod as $ppc){
             $resultado = $ppc->nombre . $ppc->categoria . $ppc->stock . $ppc->precio;
         }
- */
+        */
         $response->getBody()->Write(json_encode($resultado));
         return $response;
   
