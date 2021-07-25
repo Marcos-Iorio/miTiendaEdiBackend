@@ -20,7 +20,7 @@ class ProductosController{
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
-        $categoria = Productos::ObtenerCategoria();
+        $categoria = Productos::ObtenerCategorias();
         foreach($categoria as $cat){
             $resultado = $cat->nombre_cat;
         }
