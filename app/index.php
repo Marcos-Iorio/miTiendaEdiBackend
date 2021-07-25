@@ -13,6 +13,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/controllers/UsuarioController.php';
 require __DIR__ . '/controllers/ProductosController.php';
 require __DIR__ . '/Entidades/Usuario.php';
+require __DIR__ . '/Entidades/Productos.php';
 require __DIR__ . '/Data/AccesoADatos.php';
 
 $app = AppFactory::create();

@@ -1,11 +1,12 @@
 <?php
     class Productos{
+        public $id;
         public $nombre;
-        public $descripcion;
-        public $precio;
+        public $categoria;
         public $stock;
+        public $precio;
 
-        public function ObtenerTodos(){
+        static public function ObtenerTodos(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
@@ -14,7 +15,7 @@
 
         }
 
-        public function ObtenerCategorias(){
+        static public function ObtenerCategorias(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM categorias');

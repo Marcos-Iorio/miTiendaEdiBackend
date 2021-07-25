@@ -7,7 +7,9 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
         $productos = Productos::ObtenerTodos();
-        $resultado = $productos;
+        foreach($productos as $prod){
+            $resultado = $prod->prodID . $prod->nombre . $prod->categoria . $prod->stock . $prod->precio;
+        }
 
         $response->getBody()->Write(json_encode($resultado));
             return $response;
@@ -27,6 +29,10 @@ class ProductosController{
     }
 
     public function ObtenerCategoria($request, $response, $args){
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+
+        $datos = $request->getParsedBody();
+
         $prodPorCat = Productos::RetornarProductoPorCategoria();
         $resultado = $prodPorCat;
 
