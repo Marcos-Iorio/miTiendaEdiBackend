@@ -23,7 +23,7 @@
             return $consulta->fetchAll(PDO::FETCH_OBJ);
         }
 
-        public function RetornarProductoPorCategoria(){
+        static public function RetornarProductoPorCategoria(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $datos = $request->getParsedBody();
