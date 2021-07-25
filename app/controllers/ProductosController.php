@@ -22,9 +22,10 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
         $categoria = Productos::ObtenerCategorias();
-        foreach($categoria as $cat){
+        $resultado = $categoria;
+        /* foreach($categoria as $cat){
             $resultado = $cat->nombre_cat;
-        }
+        } */
 
         $response->getBody()->Write(json_encode($resultado));
         return $response;
@@ -37,11 +38,11 @@ class ProductosController{
         $datos = $request->getParsedBody();
 
         $prodPorCat = Productos::RetornarProductoPorCategoria();
-        foreach($prod as $ppc){
+        $resultado = $prodPorCat;
+        /* foreach($prod as $ppc){
             $resultado = $ppc->nombre . $ppc->categoria . $ppc->stock . $ppc->precio;
         }
-
-
+ */
         $response->getBody()->Write(json_encode($resultado));
         return $response;
   
