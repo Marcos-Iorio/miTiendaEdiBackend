@@ -7,10 +7,11 @@ class ProductosController{
 
         $datos = $request->getParsedBody();
         $productos = Productos::ObtenerTodos();
-        foreach($productos as $prod){
+        $resultado = $productos;
+        /* foreach($productos as $prod){
             $resultado = $prod;
         }
-
+ */
         $response->getBody()->Write(json_encode($resultado));
             return $response;
     
