@@ -6,13 +6,10 @@ class ProductosController{
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
+        $productos = Productos::ObtenerTodos();
+        $resultado = $productos;
 
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
-        $consulta->execute();
-
-        $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
-
-            $response->getBody()->Write(json_encode($resultado));
+        $response->getBody()->Write(json_encode($resultado));
             return $response;
     
     }
@@ -21,10 +18,8 @@ class ProductosController{
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
-
-        $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM categorias');
-        $consulta->execute();
-        $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
+        $categoria = Productos::ObtenerCategoria();
+        $resultado = $categorias;
 
         $response->getBody()->Write(json_encode($resultado));
         return $response;
@@ -32,28 +27,11 @@ class ProductosController{
     }
 
     public function ObtenerCategoria($request, $response, $args){
-        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $prodPorCat = Productos::RetornarProductoPorCategoria();
+        $resultado = $prodPorCat;
 
-        $datos = $request->getParsedBody();
-
-        if($datos['Categoria'] == "0"){
-            $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
-            $consulta->execute();
-
-            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
-
-            $response->getBody()->Write(json_encode($resultado));
-            return $response;
-
-        }else{
-            $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $datos['Categoria'] .'"');
-            $consulta->execute();
-    
-            $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
-    
-                $response->getBody()->Write(json_encode($resultado));
-                return $response;
-        }
+        $response->getBody()->Write(json_encode($resultado));
+        return $response;
   
     }
 

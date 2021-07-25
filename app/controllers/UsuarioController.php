@@ -8,15 +8,14 @@ class UsuarioController{
         $datos = $request->getParsedBody();
 
         $usuarios = Usuario::LoginUsuarios();
-        
+
+        $respuesta = "Datos incorrectos";
         foreach($usuarios as $users){
              if ($users->nombre == $datos['Nombre'] && $users->pass == $datos['Contraseña']){
-                $respuesta = "Sesion iniciada " . $users->nombre . $users->pass;
+                $respuesta = "Sesion iniciada ";
             }
         }
-        if($users->nombre != $datos['Nombre'] && $users->pass != $datos['Contraseña']){
-            $respuesta = "Datos incorrectos";
-        }
+        
         $response->getBody()->Write(json_encode($respuesta));
             return $response;
         
