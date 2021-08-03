@@ -23,7 +23,7 @@ class UsuarioController{
 
     public function RegistrarUsuario($request, $response, $args){
 
-        $ObjetoProvenienteDelFront =  json_encode($request->getBody());
+        $ObjetoProvenienteDelFront =  json_decode($request->getBody());
         //var_dump($ObjetoProvenienteDelFront);
 
         //recorro los valores del objeto
@@ -35,7 +35,7 @@ class UsuarioController{
 
          $retorno = $MiUsuario->CrearUsuario();
 
-        $response->getBody()->Write(json_decode($ObjetoProvenienteDelFront));
+        $response->getBody()->Write(json_encode($ObjetoProvenienteDelFront));
 
         return $response;
 
