@@ -11,7 +11,9 @@
 
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
             
-            $this->autor;
+            $consulta->bindParam(1, $datos['Nombre']);
+            $consulta->bindParam(2, $datos['Contraseña']);
+            $consulta->bindParam(3, $datos['Mail']);
     
             if($consulta->execute()){
                 $respuesta = "Registrado con exito";
