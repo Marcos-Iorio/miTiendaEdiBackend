@@ -8,6 +8,8 @@
 
         public function crearUsuario(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            
+            $datos = $request->getParsedBody();
 
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
             
