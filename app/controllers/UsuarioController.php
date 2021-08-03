@@ -23,24 +23,21 @@ class UsuarioController{
 
     public function RegistrarUsuario($request, $response, $args){
 
+        $ObjetoProvenienteDelFront =  json_decode($request->getBody());
+        //var_dump($ObjetoProvenienteDelFront);
 
-        $datos = $request->getParsedBody();
-
-        $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
-        
-        $consulta->bindParam(1, $datos['Nombre']);
-        $consulta->bindParam(2, $datos['Contraseña']);
-        $consulta->bindParam(3, $datos['Mail']);
-
-        if($consulta->execute()){
-            $respuesta = "Registrado con exito";
-        }else{
-            $respuesta = "Fallo en registrar";
+        //recorro los valores del objeto
+        $MiUsuario = new Usuario();
+        foreach ($ObjetoProvenienteDelFront as $atr => $valueAtr) {
+            $MiUsuario->{$atr} = $valueAtr;
         }
-        
-        $response->$respuesta;
+
+         $retorno = $MiUsuario->CrearUsuario();
+
+        $response->getBody()->Write(json_encode($ObjetoProvenienteDelFront));
+
         return $response;
-        
+
     }
 
 }

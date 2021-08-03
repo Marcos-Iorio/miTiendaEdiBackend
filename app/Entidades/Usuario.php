@@ -7,7 +7,7 @@
         public $mail;
 
         public function crearUsuario(){
-            /* $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, pass, mail) VALUES (?, ?, ?)");
             
@@ -22,7 +22,7 @@
             }
             
             $response->$respuesta;
-            return $response; */
+            return $response;
         }
         static public function LoginUsuarios(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
