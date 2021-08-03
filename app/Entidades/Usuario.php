@@ -11,7 +11,7 @@
 
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO usuarios (nombre, mail, pass) VALUES (?, ?, ?)");
             
-            $consulta->bindParam(1, $datos['Nombre']);
+            $consulta->bindParam(1, $nombre);
             $consulta->bindParam(3, $datos['Mail']);
             $consulta->bindParam(2, $datos['Contraseña']);
     
