@@ -29,7 +29,6 @@ class UsuarioController{
         //recorro los valores del objeto
         $MiUsuario = new Usuario();
         foreach ($ObjetoProvenienteDelFront as $atr => $valueAtr) {
-            echo $atr;
             $MiUsuario->{$atr} = $valueAtr;
         }
 
