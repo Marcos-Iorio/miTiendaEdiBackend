@@ -23,18 +23,19 @@ class UsuarioController{
 
     public function RegistrarUsuario($request, $response, $args){
 
-        $ObjetoProvenienteDelFront =  json_decode($request->getParsedBody());
+        $ObjetoProvenienteDelFront =  json_encode($request->getBody());
         //var_dump($ObjetoProvenienteDelFront);
 
         //recorro los valores del objeto
         $MiUsuario = new Usuario();
         foreach ($ObjetoProvenienteDelFront as $atr => $valueAtr) {
+            echo $atr;
             $MiUsuario->{$atr} = $valueAtr;
         }
 
          $retorno = $MiUsuario->CrearUsuario();
 
-        $response->getBody()->Write(json_encode($ObjetoProvenienteDelFront));
+        $response->getBody()->Write(json_decode($ObjetoProvenienteDelFront));
 
         return $response;
 
