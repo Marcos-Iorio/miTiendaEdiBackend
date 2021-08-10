@@ -26,8 +26,6 @@
        static public function RetornarProductoPorCategoria(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
-            $datos = $request->getParsedBody();
-
             if($datos['Categoria'] == "0"){
                 $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
                 $consulta->execute();
