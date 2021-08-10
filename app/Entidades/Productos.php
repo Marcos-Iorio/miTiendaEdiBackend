@@ -23,21 +23,21 @@
             return $consulta->fetchAll(PDO::FETCH_OBJ);
         }
 
-       static public function RetornarProductoPorCategoria(){
+       static public function RetornarProductoPorCategoria($datos){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-
-            /* if($datos['Categoria'] == "0"){
+            $front = $front;
+            if($front['Categoria'] == "0"){
                 $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
                 $consulta->execute();
 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
 
-            }else{ */
-                $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos /* where categoria = "'. $datos['Categoria'] .'" */');
+            }else{
+                $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $front['Categoria'] .'"');
                 $consulta->execute();
         
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
-            /* } */
+            }
         }
     }
 

@@ -17,7 +17,7 @@ class ProductosController{
     
     }
 
-    public function RetornarProductoPorCategoria($request, $response, $args){
+    public function ObtenerCategoria($request, $response, $args){
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
@@ -32,12 +32,12 @@ class ProductosController{
 
     }
 
-    public function ObtenerCategoria($request, $response, $args){
+    public function ProdPorCat($request, $response, $args){
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $datos = $request->getParsedBody();
 
-        $prodPorCat = Productos::RetornarProductoPorCategoria();
+        $prodPorCat = Productos::RetornarProductoPorCategoria($datos);
         $resultado = $prodPorCat;
         /* foreach($prod as $ppc){
             $resultado = $ppc->nombre . $ppc->categoria . $ppc->stock . $ppc->precio;
