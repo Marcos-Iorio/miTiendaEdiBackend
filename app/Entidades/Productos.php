@@ -26,18 +26,18 @@
        static public function RetornarProductoPorCategoria(){
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
-            if($datos['Categoria'] == "0"){
+            /* if($datos['Categoria'] == "0"){
                 $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos');
                 $consulta->execute();
 
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
 
-            }else{
+            }else{ */
                 $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $datos['Categoria'] .'"');
                 $consulta->execute();
         
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
-            }
+            /* } */
         }
     }
 
