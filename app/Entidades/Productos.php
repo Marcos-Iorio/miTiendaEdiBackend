@@ -33,7 +33,7 @@
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
 
             }else{ */
-                $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos where categoria = "'. $datos['Categoria'] .'"');
+                $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos /* where categoria = "'. $datos['Categoria'] .'" */');
                 $consulta->execute();
         
                 return $consulta->fetchAll(PDO::FETCH_OBJ);
