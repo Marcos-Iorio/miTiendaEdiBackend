@@ -1,43 +1,65 @@
 <?php
+use \Firebase\JWT\JWT;
+
 
 class UsuarioController{
-
+    private $key = "secretkey";
     public function RetornarUsuario($request, $response, $args){
-        $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
-        $datos = $request->getParsedBody();
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $name = $request->nombre;
+        $pass = $request->password;
 
         $usuarios = Usuario::LoginUsuarios();
 
-        $respuesta = "Datos incorrectos";
+        $respuesta = [
+            'success' => false,
+            'message' => "Usuario o contraseña inválidos"
+            ];
         foreach($usuarios as $users){
-             if ($users->nombre == $datos['Nombre'] && $users->pass == $datos['Contraseña']){
-                $respuesta = "Sesion iniciada ";
+            if(isset($users)){
+                if ($users->nombre == $name && $users->pass == $pass){
+                    $token = [
+                        "iss" => "utopian",
+                        "iat" => time(),
+                        "exp" => time() + 60,
+                        "data" => [
+                        "user_id" => $users->userID
+                        ]
+                        ];
+
+                        $jwt = JWT::encode($token, $this->key);
+                        
+                        $respuesta = [
+                             'success' => true, 
+                             'message' => "Sesion iniciada",
+                             'jwt' => $jwt ];
+                }
             }
         }
         
         $response->getBody()->Write(json_encode($respuesta));
-            return $response;
+        return $response;
         
     }
 
     public function RegistrarUsuario($request, $response, $args){
 
-        $ObjetoProvenienteDelFront = json_decode($request->getBody());
-        //var_dump($ObjetoProvenienteDelFront);
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
 
         //recorro los valores del objeto
         $MiUsuario = new Usuario();
-        foreach ($ObjetoProvenienteDelFront as $atr => $valueAtr) {
+        foreach ($request as $atr => $valueAtr) {
             $MiUsuario->{$atr} = $valueAtr;
         }
 
-         $retorno = $MiUsuario->CrearUsuario();
+         $retorno = $MiUsuario->crearUsuario();
 
-        $response->getBody()->Write(json_encode($ObjetoProvenienteDelFront));
+        $response->getBody()->Write(json_encode($retorno));
 
         return $response;
-
     }
 
 }

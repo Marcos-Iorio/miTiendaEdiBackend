@@ -35,9 +35,11 @@ class ProductosController{
     public function ProdPorCat($request, $response, $args){
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
-        $datos = $request->getParsedBody();
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $categoria = $request->categoria;
 
-        $prodPorCat = Productos::RetornarProductoPorCategoria($datos);
+        $prodPorCat = Productos::RetornarProductoPorCategoria($categoria);
         $resultado = $prodPorCat;
         /* foreach($prod as $ppc){
             $resultado = $ppc->nombre . $ppc->categoria . $ppc->stock . $ppc->precio;
@@ -46,6 +48,35 @@ class ProductosController{
         $response->getBody()->Write(json_encode($resultado));
         return $response;
   
+    }
+
+    public function borrarProducto($request, $response, $args){
+
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $idProd = $request->prodId;
+
+        $borrarProducto = Productos::BorrarProducto($idProd);
+        $resultado = $borrarProducto;
+        
+        $response->getBody()->Write(json_encode($resultado));
+        return $response;
+
+    }
+
+    public function editarProducto($request, $response, $args){
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $producto = $request;
+
+        $editarProd = Productos::EditarProducto($producto);
+        $resultado = $editarProd;
+        
+        $response->getBody()->Write(json_encode($resultado));
+        return $response;
+
+
+
     }
 
 }

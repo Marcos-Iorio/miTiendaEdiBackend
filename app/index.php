@@ -8,6 +8,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Routing\RouteContext;
+use \Firebase\JWT\JWT;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/controllers/UsuarioController.php';
@@ -31,7 +32,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
 
     $response = $response->withHeader('Access-Control-Allow-Origin', '*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'get, post');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
 
     // Optional: Allow Ajax CORS requests with Authorization header
@@ -40,20 +41,22 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     return $response;
 });
 
+
 $app->group('/login', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RetornarUsuario');
-    
+
 });
 
 $app->group('/registro', function (RouteCollectorProxy $group) {
     $group->POST('[/]', \UsuarioController::class . ':RegistrarUsuario');
     
 });
-
 $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductosController::class . ':ObtenerCategoria');
-    $group->get('/todos', \ProductosController::class . ':ObtenerTodo');
+    $group->POST('/todos', \ProductosController::class . ':ObtenerTodo');
     $group->POST('/prodCat', \ProductosController::class . ':ProdPorCat');
+    $group->DELETE('/borrar', \ProductosController::class . ':borrarProducto');
+    $group->put('/editar', \ProductosController::class . ':editarProducto');
     
 });
 
