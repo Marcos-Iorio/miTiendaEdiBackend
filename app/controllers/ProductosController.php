@@ -56,8 +56,8 @@ class ProductosController{
         $request = json_decode($postdata);
         $idProd = $request->prodId;
 
-        $borrarProducto = Productos::traerInfoProd($idProd);
-        $resultado = $borrarProducto;
+        $infoProducto = Productos::traerInfoProd($idProd);
+        $resultado = $infoProducto;
         
         $response->getBody()->Write(json_encode($resultado));
         return $response;

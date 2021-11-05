@@ -47,15 +47,11 @@
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta('SELECT * FROM productos '); /* WHERE prodID =  "' . $front . '"' */
             
-            if($consulta->execute()){
-                $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
-            }else{
-                $respuesta = [
-                    'success' => false, 
-                    'message' => "No hay productos con este ID"
-                ];
-                return $respuesta;
-            } 
+            $consulta->execute();
+            $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
+            
+            return $respuesta;
+            
         }
 
        static public function BorrarProducto($idProd){
