@@ -50,6 +50,20 @@ class ProductosController{
   
     }
 
+    public function prodId($request, $response, $args){
+
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $idProd = $request->prodId;
+
+        $borrarProducto = Productos::traerInfoProd($idProd);
+        $resultado = $borrarProducto;
+        
+        $response->getBody()->Write(json_encode($resultado));
+        return $response;
+
+    }
+
     public function borrarProducto($request, $response, $args){
 
         $postdata = file_get_contents("php://input");
