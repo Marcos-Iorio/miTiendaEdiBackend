@@ -55,7 +55,7 @@ $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductosController::class . ':ObtenerCategoria');
     $group->POST('/todos', \ProductosController::class . ':ObtenerTodo');
     $group->POST('/prodCat', \ProductosController::class . ':ProdPorCat');
-    $group->get('[/]', \ProductosController::class . ':prodId');
+    $group->get('/prodId', \ProductosController::class . ':prodId');
     $group->DELETE('/borrar', \ProductosController::class . ':borrarProducto');
     $group->put('/editar', \ProductosController::class . ':editarProducto');
     
