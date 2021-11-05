@@ -45,7 +45,7 @@
         static public function traerInfoProd($idProd){
             $front = $idProd;
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta('SELECT FROM productos WHERE prodID = ' . $front . '');
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT FROM productos WHERE prodID = ' . $front . '");
             
             if($consulta->execute()){
                 $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
