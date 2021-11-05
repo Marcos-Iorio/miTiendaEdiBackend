@@ -48,7 +48,7 @@
             $consulta = $objAccesoDatos->prepararConsulta('SELECT FROM productos WHERE prodID = "' . $front . '"');
             
             if($consulta->execute()){
-                $respuesta = $consulta->fetchAll(PDI::FETCH_OBJ);
+                $respuesta = $consulta->fetchAll(PDO::FETCH_OBJ);
             }else{
                 $respuesta = [
                     'success' => false, 
