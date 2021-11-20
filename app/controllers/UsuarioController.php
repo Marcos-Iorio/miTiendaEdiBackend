@@ -10,7 +10,7 @@ class UsuarioController{
         $request = json_decode($postdata);
         $name = $request->nombre;
         $pass = $request->password;
-
+        
         $usuarios = Usuario::LoginUsuarios();
 
         $respuesta = [

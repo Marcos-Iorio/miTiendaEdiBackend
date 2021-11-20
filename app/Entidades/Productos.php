@@ -123,6 +123,34 @@
     
             return $respuesta;
         }
+
+        static public function agregarProducto(){
+            $postdata = file_get_contents("php://input");
+            $request = json_decode($postdata);
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+
+            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO productos (nombre_prod, categoria, stock, precio) VALUES (?, ?, ?, ?)");
+            
+            $consulta->bindParam(1, $request->nombre);
+            $consulta->bindParam(2, $request->categoria);
+            $consulta->bindParam(3, $request->stock);
+            $consulta->bindParam(4, $request->precio);
+
+    
+            if($consulta->execute()){
+                $respuesta = [
+                    'success' => true,
+                     'message' => "Producto agregado!"
+                    ];
+            }else{
+                $respuesta = [
+                    'success' => false,
+                     'message' => "Error al agregar el producto!"
+                    ];
+            }
+    
+            return $respuesta;
+        }
     }
 
 

@@ -89,8 +89,23 @@ class ProductosController{
         $response->getBody()->Write(json_encode($resultado));
         return $response;
 
+    }
 
+    public function agregarProd($request, $response, $args){
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
 
+        //recorro los valores del objeto
+        $Producto = new Productos();
+        foreach ($request as $atr => $valueAtr) {
+            $Producto->{$atr} = $valueAtr;
+        }
+
+         $retorno = $Producto->agregarProducto();
+
+        $response->getBody()->Write(json_encode($retorno));
+
+        return $response;
     }
 
 }

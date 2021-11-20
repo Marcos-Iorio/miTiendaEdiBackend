@@ -58,6 +58,7 @@ $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->POST('/prodId', \ProductosController::class . ':prodId');
     $group->DELETE('/borrar', \ProductosController::class . ':borrarProducto');
     $group->put('/editar', \ProductosController::class . ':editarProducto');
+    $group->POST('/agregar', \ProductosController::class . ':agregarProd');
     
 });
 
