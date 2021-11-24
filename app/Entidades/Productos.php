@@ -106,8 +106,8 @@
             $consulta = $objAccesoDatos->prepararConsulta('UPDATE productos set nombre_prod = ?, stock = ?, precio = ? WHERE prodID = "'. $front->id .'"');
             
             $consulta->bindParam(1, $nombreProd);
-            $consulta->bindParam(2, $precio);
-            $consulta->bindParam(3, $stock);
+            $consulta->bindParam(2, $stock);
+            $consulta->bindParam(3, $precio);
     
             if($consulta->execute()){
                 $respuesta = [
